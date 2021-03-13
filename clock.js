@@ -30,6 +30,7 @@ function updateTime(k) {
 
 function flickerSeparator() {
   if (window.bit == 0) {
+    currentTime()
     window.sep.innerText = " ";
   } else {
     window.sep.innerText = window.dot;
