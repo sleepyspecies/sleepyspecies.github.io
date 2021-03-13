@@ -8,7 +8,7 @@ function currentTime() {
   hour = updateTime(hour);
   min = updateTime(min);
   sec = updateTime(sec);
-  window.clocke.innerText = hour + " : " + min + " : " + sec; /* adding time to the div */
+  window.clocke.innerText = hour + "." + min + "." + sec; /* adding time to the div */
   var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
 }
 
