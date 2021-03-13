@@ -15,7 +15,6 @@ function currentTime() {
   window.ji.innerText = hour;
   window.hun.innerText = min;
   window.byou.innerText = sec;
-  //var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
 }
 
 function updateTime(k) {
@@ -37,7 +36,6 @@ function flickerSeparator() {
     window.sep[1].style.opacity = 1;
   }
   window.bit = ~window.bit;
-  var t = setTimeout(function(){ flickerSeparator() }, 500); /* setting timer */
 }
 
-flickerSeparator(); /* calling currentTime() function to initiate the process */
+setInterval(function(){ flickerSeparator() }, 500);
