@@ -1,6 +1,7 @@
 var ji = document.querySelector(".hour");
 var hun = document.querySelector(".minute");
 var byou = document.querySelector(".second");
+var hi = document.querySelector(".day");
 var sep = document.getElementsByClassName("separator");
 var bit = 0;
 
@@ -9,6 +10,9 @@ function currentTime() {
   var hour = date.getHours();
   var min = date.getMinutes();
   var sec = date.getSeconds();
+  if (hour == 0 && min == 0 && sec && 0) {
+    updateDate()
+  }
   hour = updateTime(hour);
   min = updateTime(min);
   sec = updateTime(sec);
@@ -26,6 +30,11 @@ function updateTime(k) {
   }
 }
 
+function updateDate() {
+  var now = new Date();
+  window.hi.innerText = now.toLocaleString('default', { month: 'short' }) + " " + now.getDate()
+}
+
 function flickerSeparator() {
   if (window.bit == 0) {
     currentTime()
@@ -38,4 +47,9 @@ function flickerSeparator() {
   window.bit = ~window.bit;
 }
 
-setInterval(function(){ flickerSeparator() }, 500);
+function init() {
+  updateDate()
+  setInterval(function(){ flickerSeparator() }, 500)
+}
+
+init();
