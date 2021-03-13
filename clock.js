@@ -3,7 +3,6 @@ var hun = document.querySelector(".minute");
 var byou = document.querySelector(".second");
 var sep = document.getElementsByClassName("separator");
 var bit = 0;
-var dot = ".";
 
 function currentTime() {
   var date = new Date(); /* creating object of Date class */
@@ -31,11 +30,11 @@ function updateTime(k) {
 function flickerSeparator() {
   if (window.bit == 0) {
     currentTime()
-    window.sep[0].innerText = " ";
-    window.sep[1].innerText = " ";
+    window.sep[0].style.opacity = 0;
+    window.sep[1].style.opacity = 0;
   } else {
-    window.sep[0].innerText = window.dot;
-    window.sep[1].innerText = window.dot;
+    window.sep[0].style.opacity = 1;
+    window.sep[1].style.opacity = 1;
   }
   window.bit = ~window.bit;
   var t = setTimeout(function(){ flickerSeparator() }, 500); /* setting timer */
