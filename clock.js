@@ -12,7 +12,7 @@ function currentTime() {
   sec = updateTime(sec);
   window.hh.innerText = hour;
   window.mm.innerText = min;
-  window.ss.innerText = ss;
+  window.ss.innerText = sec;
   var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
 }
 
