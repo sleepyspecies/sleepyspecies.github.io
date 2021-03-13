@@ -1,6 +1,9 @@
 var ji = document.querySelector(".hour");
 var hun = document.querySelector(".minute");
 var byou = document.querySelector(".second");
+var sep = document.getElementByClassName("separator");
+var bit = 0;
+var dot = ".";
 
 function currentTime() {
   var date = new Date(); /* creating object of Date class */
@@ -13,7 +16,7 @@ function currentTime() {
   window.ji.innerText = hour;
   window.hun.innerText = min;
   window.byou.innerText = sec;
-  var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
+  //var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
 }
 
 function updateTime(k) {
@@ -25,4 +28,14 @@ function updateTime(k) {
   }
 }
 
-currentTime(); /* calling currentTime() function to initiate the process */
+function flickerSeparator() {
+  if (window.bit == 0) {
+    window.sep.innerText = " ";
+  } else {
+    window.sep.innerText = window.dot;
+  }
+  window.bit = ~window.bit;
+  var t = setTimeout(function(){ flickerSeparator() }, 500); /* setting timer */
+}
+
+flickerSeparator(); /* calling currentTime() function to initiate the process */
