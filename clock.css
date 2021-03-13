@@ -1,5 +1,10 @@
 @font-face {font-family: "test"; src: url(MyFont-Regular.otf);}
 
+body {
+  background-color: #000;
+  color: #FFF;
+}
+
 #clock {
   font-family: 'test', sans-serif;
   font-size: 32px;
