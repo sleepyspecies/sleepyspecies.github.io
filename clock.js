@@ -1,6 +1,6 @@
-var hh = document.getElementsByClassName("hour");
-var mm = document.getElementsByClassName("minute");
-var ss = document.getElementsByClassName("second");
+var ji = document.getElementsByClassName("hour");
+var hun = document.getElementsByClassName("minute");
+var byou = document.getElementsByClassName("second");
 
 function currentTime() {
   var date = new Date(); /* creating object of Date class */
@@ -10,9 +10,9 @@ function currentTime() {
   hour = updateTime(hour);
   min = updateTime(min);
   sec = updateTime(sec);
-  window.hh.innerText = hour;
-  window.mm.innerText = min;
-  window.ss.innerText = sec;
+  window.ji.innerText = hour;
+  window.hun.innerText = min;
+  window.byou.innerText = sec;
   var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
 }
 
