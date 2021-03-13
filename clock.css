@@ -3,9 +3,8 @@
 .clock {
   font-family: 'test', sans-serif;
   font-size: 32px;
-  letter-spacing: 2px;
 }
 
-.hour, .minute, .separator {
+.hour, .minute, .separator, second {
   float: left;
 }
