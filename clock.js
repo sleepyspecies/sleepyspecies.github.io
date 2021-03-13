@@ -10,6 +10,7 @@ function currentTime() {
   hour = updateTime(hour);
   min = updateTime(min);
   sec = updateTime(sec);
+  console.log(sec)
   window.ji.innerText = hour;
   window.hun.innerText = min;
   window.byou.innerText = sec;
