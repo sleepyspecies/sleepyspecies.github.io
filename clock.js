@@ -1,4 +1,7 @@
-var clocke = document.getElementById("clock");
+const hh = document.getElementById("hour");
+const mm = document.getElementById("minute");
+const ss = document.getElementById("second");
+const separators = document.querySelectorAll(".clock");
 
 function currentTime() {
   var date = new Date(); /* creating object of Date class */
@@ -8,7 +11,9 @@ function currentTime() {
   hour = updateTime(hour);
   min = updateTime(min);
   sec = updateTime(sec);
-  window.clocke.innerText = hour + "." + min + "." + sec; /* adding time to the div */
+  window.hh.innerText = hour;
+  window.mm.innerText = min;
+  window.ss.innerText = ss;
   var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
 }
 
