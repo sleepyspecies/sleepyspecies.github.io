@@ -5,6 +5,6 @@
   font-size: 32px;
 }
 
-.hour, .minute, .separator, second {
+.hour, .minute, .separator, .second {
   float: left;
 }
