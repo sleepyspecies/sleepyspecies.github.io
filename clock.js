@@ -1,7 +1,7 @@
 var ji = document.querySelector(".hour");
 var hun = document.querySelector(".minute");
 var byou = document.querySelector(".second");
-var sep = document.getElementByClassName("separator");
+var sep = document.getElementsByClassName("separator");
 var bit = 0;
 var dot = ".";
 
@@ -31,9 +31,11 @@ function updateTime(k) {
 function flickerSeparator() {
   if (window.bit == 0) {
     currentTime()
-    window.sep.innerText = " ";
+    window.sep[0].innerText = " ";
+    window.sep[1].innerText = " ";
   } else {
-    window.sep.innerText = window.dot;
+    window.sep[0].innerText = window.dot;
+    window.sep[1].innerText = window.dot;
   }
   window.bit = ~window.bit;
   var t = setTimeout(function(){ flickerSeparator() }, 500); /* setting timer */
