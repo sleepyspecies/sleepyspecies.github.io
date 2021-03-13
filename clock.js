@@ -1,7 +1,6 @@
-const hh = document.getElementById("hour");
-const mm = document.getElementById("minute");
-const ss = document.getElementById("second");
-const separators = document.querySelectorAll(".clock");
+var hh = document.getElementById("hour");
+var mm = document.getElementById("minute");
+var ss = document.getElementById("second");
 
 function currentTime() {
   var date = new Date(); /* creating object of Date class */
