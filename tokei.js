@@ -1,7 +1,7 @@
 var ji = document.querySelector(".hour");
 var hun = document.querySelector(".minute");
 var byou = document.querySelector(".second");
-var hi = document.querySelector(".day");
+var hi = document.querySelector(".date");
 var sep = document.getElementsByClassName("separator");
 var bit = 0;
 
