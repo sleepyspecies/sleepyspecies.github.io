@@ -32,7 +32,7 @@ function updateTime(k) {
 
 function updateDate() {
   var now = new Date();
-  window.hi.innerText = " " + now.toLocaleString('default', { month: 'short' }) + " " + now.getDate()
+  window.hi.innerText = " " + now.toLocaleString('default', { month: 'short' }) + " " + now.getDate();
 }
 
 function flickerSeparator() {
