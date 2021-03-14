@@ -1,0 +1,10 @@
+@font-face {font-family: "test"; src: url(https://raw.githubusercontent.com/fontworks-fonts/Klee/master/fonts/ttf/KleeOne-SemiBold.ttf);}
+
+.clock {
+  font-family: 'test', sans-serif;
+  font-size: 26px;
+}
+
+.hour, .minute, .separator, .second, .date {
+  float: left;
+}
