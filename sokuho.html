@@ -4,37 +4,19 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="tokei.css">
 	<title></title>
 </head>
 <body>
 	<div class="sokuhou">
 	</div>
 	<script>
-		function tellAPI() {
-			let headers = new Headers();
-			headers.append('Content-Type', 'text/html; charset=iso-8859-1');
-			headers.append('Accept', 'text/html');
-			headers.append('Origin', 'https://sleepyspecies.github.io');
-			fetch('https://api.iedred7584.com/eew/json', {
-				method: 'GET',
-				mode: 'cors',
-				headers: headers
-			}).then(function(response) {
-				return response.json();
-			}).then(function(myJson) {
-				console.log(myJson);
-			}).catch(function(error) {
-				console.log(error);
-			});
-		}
-		
-		function Init() {
-			tellAPI();
-			//setInterval(function(){ tellAPI() }, 1000);
-		}
-		
-		Init();
+		fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
+			return response.json();
+		}).then(function(myJson) {
+			console.log(myJson);
+		}).catch(function(error) {
+			console.log(error);
+		});
 	</script>
 </body>
 </html>
