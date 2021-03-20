@@ -12,40 +12,38 @@
 	</div>
 
 	<script>
-		(function() {
-			// https://stackoverflow.com/questions/12460378/how-to-get-json-from-url-in-javascript
-			var getJSON = function(url, callback) {
-				var xhr = new XMLHttpRequest();
-				xhr.open('GET', url, true);
-				xhr.responseType = 'json';
-				xhr.onload = function() {
-					var status = xhr.status;
-					if (status === 200) {
-						callback(null, xhr.response);
-					} else {
-						callback(status, xhr.response);
-					}
-				};
-				xhr.send();
+		// https://stackoverflow.com/questions/12460378/how-to-get-json-from-url-in-javascript
+		var getJSON = function(url, callback) {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', url, true);
+			xhr.responseType = 'json';
+			xhr.onload = function() {
+				var status = xhr.status;
+				if (status === 200) {
+					callback(null, xhr.response);
+				} else {
+					callback(status, xhr.response);
+				}
 			};
-			
-			function tellAPI() {
-				getJSON('https://api.iedred7584.com/eew/json',
-					function(err, data) {
-						if (err !== null) {
-							alert('Something went wrong: ' + err);
-						} else {
-							alert('Your query count: ' + data.query.count);
-						}
-					});
-			}
-			
-			function Init() {
-				setInterval(function(){ tellAPI() }, 1000)
-			}
-			
-			Init();
+			xhr.send();
+		};
+		
+		function tellAPI() {
+			getJSON('https://api.iedred7584.com/eew/json',
+				function(err, data) {
+					if (err !== null) {
+						alert('Something went wrong: ' + err);
+					} else {
+						alert('Your query count: ' + data.query.count);
+					}
+			});
 		}
+		
+		function Init() {
+			setInterval(function(){ tellAPI() }, 1000);
+		}
+		
+		Init();
 	</script>
 </body>
 </html>
