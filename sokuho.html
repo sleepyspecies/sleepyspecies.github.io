@@ -31,12 +31,16 @@ function postData(url = ``, data = {}) {
 	<script>
 		function tellAPI() {
 			fetch('https://api.iedred7584.com/eew/json', {
+				credetials: 'include',
 				method: 'POST',
 				mode: 'cors',
 				cache: 'no-cache',
-				credetials: 'same-origin',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8',
+					'Accept': 'application/json',
+					'Access-Control-Allow-Origin', 'https://sleepyspecies.github.io/sokuho.html',
+					'Access-Control-Allow-Credentials', 'true',
+					'GET', 'POST', OPTIONS'
 				},
 				}).then(function(response) {
 					return response.json();
@@ -48,7 +52,8 @@ function postData(url = ``, data = {}) {
 		}
 		
 		function Init() {
-			tellAPI();
+			var json = tellAPI();
+			console.log(json);
 			//setInterval(function(){ tellAPI() }, 1000);
 		}
 		
