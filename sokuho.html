@@ -20,21 +20,19 @@
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8',
 					'Accept': 'application/json',
-					'Access-Control-Allow-Origin': 'https://sleepyspecies.github.io/sokuho.html',
-					'Access-Control-Allow-Credentials': 'true'
+					'Access-Control-Allow-Origin': '*',
 				},
 				}).then(function(response) {
 					return response.json();
 				}).then(function(myJson) {
-					console.log(myJson);
-					console.log(myJson.length);
-				return false
+					console.log(JSON.stringify(myJson));
+				}).catch(function(error) {
+					console.log('Request failed', error)
 			});
 		}
 		
 		function Init() {
-			var json = tellAPI();
-			console.log(json);
+			tellAPI();
 			//setInterval(function(){ tellAPI() }, 1000);
 		}
 		
