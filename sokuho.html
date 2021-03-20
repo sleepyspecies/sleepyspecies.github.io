@@ -23,12 +23,12 @@
 					'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
 					'Access-Control-Allow-Headers ': 'Origin, Content-Type, Accept',
 				},
-				}).then(function(response) {
-					return response.json();
-				}).then(function(myJson) {
-					console.log(JSON.stringify(myJson));
-				}).catch(function(error) {
-					console.log('Request failed', error);
+			}).then(function(response) {
+				return response.json();
+			}).then(function(myJson) {
+				console.log(JSON.stringify(myJson));
+			}).catch(function(error) {
+				console.log('Request failed', error);
 			});
 		}
 		
