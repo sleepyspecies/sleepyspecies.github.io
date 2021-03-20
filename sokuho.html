@@ -13,7 +13,7 @@
 
 	<script>
 		function tellAPI() {
-			fetch('https://api.iedred7584.com/eew/json')
+			fetch('https://api.iedred7584.com/eew/json', {mode: 'cors'})
 				.then(function(response) {
 					return response.json();
 				})
