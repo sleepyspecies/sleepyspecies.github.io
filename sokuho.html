@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="tokei.css">
+	<title></title>
+</head>
+<body>
+	<div class="sokuhou">
+	</div>
+
+	<script>
+		(function() {
+			// https://stackoverflow.com/questions/12460378/how-to-get-json-from-url-in-javascript
+			var getJSON = function(url, callback) {
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', url, true);
+				xhr.responseType = 'json';
+				xhr.onload = function() {
+					var status = xhr.status;
+					if (status === 200) {
+						callback(null, xhr.response);
+					} else {
+						callback(status, xhr.response);
+					}
+				};
+				xhr.send();
+			};
+			
+			function tellAPI() {
+				getJSON('https://api.iedred7584.com/eew/json',
+					function(err, data) {
+						if (err !== null) {
+							alert('Something went wrong: ' + err);
+						} else {
+							alert('Your query count: ' + data.query.count);
+						}
+					});
+			}
+			
+			function Init() {
+				setInterval(function(){ tellAPI() }, 1000)
+			}
+		}
+		
+		Init();
+	</script>
+</body>
+</html>
