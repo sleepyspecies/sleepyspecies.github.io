@@ -12,17 +12,14 @@
 	</div>
 	<script>
 		function tellAPI() {
+			let headers = new Headers();
+			headers.append('Content-Type', 'application/json');
+			headers.append('Accept', 'application/json');
+			headers.append('Origin', 'https://sleepyspecies.github.io/sokuho.html');
 			fetch('https://api.iedred7584.com/eew/json', {
 				method: 'POST',
 				mode: 'cors',
-				headers: {
-					'Origin': '*',
-					'Content-Type': 'application/json',
-					'Accept': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-					'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-					'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept',
-				},
+				headers: headers
 			}).then(function(response) {
 				return response.json();
 			}).then(function(myJson) {
