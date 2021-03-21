@@ -7,16 +7,44 @@
 	<title></title>
 </head>
 <body>
-	<div class="sokuhou">
-	</div>
+	<h1 class="sokuhou-title"></h1>
+	<p class='sokuhou-details'></p>
 	<script>
-		fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
-			return response.json();
-		}).then(function(myJson) {
-			console.log(myJson);
-		}).catch(function(error) {
-			console.log(error);
-		});
+			var sokuhot = document.querySelector(".sokuhou-title");
+			var sokuhod = document.querySelector(".sokuhou-details");
+			let sound = new Audio('https://raw.githubusercontent.com/sleepyspecies/sleepyspecies.github.io/main/eew-alert-iphone.webm');
+			fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
+				return response.json();
+			}).then(function(data) {
+				sokuhot.innerHTML = data.Type.Detail;
+				sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
+				console.log(data);
+				console.log();
+				console.log('震度: '+data.MaxIntensity.LongString);
+				console.log('マグニチュード: '+data.Hypocenter.Magnitude.Float);
+				console.log('震源の深さ: '+data.Hypocenter.Location.Depth.String);
+				sound.play();
+				var date = new Date
+				if ((date.getTime - data.AnnouncedTime.UnixTime) < 1800) {
+					console.log('緊急地震速報！');
+				}
+			}).catch(function(error) {
+				console.log(error);
+			});
 	</script>
+	<style type="text/css">
+		body {
+			background-color: #000;
+			color: #FFF;
+		}
+		
+		h1 {
+			color: #F00;
+		}
+		
+		p {
+			font-size: 24px;
+		}
+	</style>
 </body>
 </html>
