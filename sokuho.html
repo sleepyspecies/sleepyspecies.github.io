@@ -19,7 +19,6 @@
 				fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
 					return response.json();
 				}).then(function(data) {
-					console.log(data);
 					if (recentTime <= data.AnnouncedTime.UnixTime) {
 						sokuhot.innerHTML = data.Type.Detail;
 						sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
