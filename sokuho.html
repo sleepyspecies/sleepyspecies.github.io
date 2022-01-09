@@ -21,6 +21,7 @@
 				return response.json();
 			}).then(function(data) {
 				if (recentTime < data.AnnouncedTime.UnixTime) {
+					console.log(data);
 					if (numTimeout > 0) {
 						clearTimeout(numTimeout);
 					}
