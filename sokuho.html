@@ -10,28 +10,37 @@
 	<h1 class="sokuhou-title"></h1>
 	<p class='sokuhou-details'></p>
 	<script>
-			var sokuhot = document.querySelector(".sokuhou-title");
-			var sokuhod = document.querySelector(".sokuhou-details");
-			let sound = new Audio('https://raw.githubusercontent.com/sleepyspecies/sleepyspecies.github.io/main/eew-alert-iphone.webm');
-			var recentTime = Date.now();
-			
-			function getjson() {
-				fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
-					return response.json();
-				}).then(function(data) {
-					if (recentTime <= data.AnnouncedTime.UnixTime) {
-						sokuhot.innerHTML = data.Type.Detail;
-						sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
-						console.log(data);
-						sound.play();
-						recentTime = data.AnnouncedTime.UnixTime;
+		var sokuhot = document.querySelector(".sokuhou-title");
+		var sokuhod = document.querySelector(".sokuhou-details");
+		let sound = new Audio('https://raw.githubusercontent.com/sleepyspecies/sleepyspecies.github.io/main/eew-alert-iphone.webm');
+		var recentTime = Date.now();
+		var numTimeout = 0;
+
+		function getjson() {
+			fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
+				return response.json();
+			}).then(function(data) {
+				if (recentTime < data.AnnouncedTime.UnixTime) {
+					if (numTimeout > 0) {
+						clearTimeout(numTimeout);
 					}
-				}).catch(function(error) {
-					console.log(error);
-				});
-			}
-			
-			setInterval(getjson, 1000);
+					sokuhot.innerHTML = data.Type.Detail;
+					sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
+					console.log(data);
+					sound.play();
+					recentTime = data.AnnouncedTime.UnixTime;
+					numTimeout = setTimeout(function(){
+						sokuhot.innerHTML = '';
+						sokuhod.innerHTML = '';
+						numTimeout = 0;
+					}, 300000);
+				}
+			}).catch(function(error) {
+				console.log(error);
+			});
+		}
+
+		setInterval(getjson, 1000);
 	</script>
 	<style type="text/css">
 		body {
