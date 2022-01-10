@@ -36,9 +36,12 @@
 						if (playedPromise) {
 							playedPromise.catch((e) => {
 								console.log(e);
-								if (e.name === 'NotAllowedError' || e.name === 'NotSupportedError') { console.log(e.name);}}).then(() => {
+								if (e.name === 'NotAllowedError' || e.name === 'NotSupportedError') {
+									console.log(e.name);
+								}
+							}).then(() => {
 								console.log("playing sound !!!");
-								});
+							});
 						}
 					}
 					
