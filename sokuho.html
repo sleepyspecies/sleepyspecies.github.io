@@ -12,38 +12,47 @@
 	<script>
 		var sokuhot = document.querySelector(".sokuhou-title");
 		var sokuhod = document.querySelector(".sokuhou-details");
-		let sound = new Audio('https://raw.githubusercontent.com/sleepyspecies/sleepyspecies.github.io/main/eew-alert-iphone.webm');
+		let audio = new Audio('https://raw.githubusercontent.com/sleepyspecies/sleepyspecies.github.io/main/eew-alert-iphone.webm');
 		var recentTime = 0; //Date.now();
 		var numTimeout = 0;
 
-		window.onload = function() {
-			function getjson() {
-				fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
-					return response.json();
-				}).then(function(data) {
-					if (recentTime < data.AnnouncedTime.UnixTime) {
-						console.log(data);
-						if (numTimeout > 0) {
-							clearTimeout(numTimeout);
-						}
-						sokuhot.innerHTML = data.Type.Detail;
-						sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
-						console.log(data);
-						sound.play();
-						recentTime = data.AnnouncedTime.UnixTime;
-						numTimeout = setTimeout(function(){
-							sokuhot.innerHTML = '';
-							sokuhod.innerHTML = '';
-							numTimeout = 0;
-						}, 300000);
+		function getjson() {
+			fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
+				return response.json();
+			}).then(function(data) {
+				if (recentTime < data.AnnouncedTime.UnixTime) {
+					console.log(data);
+					if (numTimeout > 0) {
+						clearTimeout(numTimeout);
 					}
-				}).catch(function(error) {
-					console.log(error);
-				});
-			}
+					sokuhot.innerHTML = data.Type.Detail;
+					sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
+					console.log(data);
+					audio.oncanplaythrough = (event) => {
+						var playedPromise = audio.play();
+						if (playedPromise) {
+							playedPromise.catch((e) => {
+								console.log(e);
+								if (e.name === 'NotAllowedError' || e.name === 'NotSupportedError') { console.log(e.name);}}).then(() => {
+								console.log("playing sound !!!");
+								});
+						}
+					}
+					recentTime = data.AnnouncedTime.UnixTime;
+					numTimeout = setTimeout(function(){
+						sokuhot.innerHTML = '';
+						sokuhod.innerHTML = '';
+						numTimeout = 0;
+					}, 300000);
+				}
+			}).catch(function(error) {
+				console.log(error);
+			});
+		}
 
-			setInterval(getjson, 1000);
-		};
+		setInterval(getjson, 1000);
+		
+		
 	</script>
 	<style type="text/css">
 		body {
