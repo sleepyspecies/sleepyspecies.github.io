@@ -25,32 +25,32 @@
 					console.log(data);
 					if (numTimeout > 0) {
 						clearTimeout(numTimeout);
+					} else {
+						// https://github.com/video-dev/hls.js/issues/1991
+						audio.play();
+						audio.oncanplaythrough = (event) => {
+							var playedPromise = audio.play();
+							if (playedPromise) {
+								playedPromise.catch((e) => {
+									console.log(e);
+									if (e.name === 'NotAllowedError' || e.name === 'NotSupportedError') {
+										console.log(e.name);
+									}
+								}).then(() => {
+									console.log("playing sound !!!");
+								});
+							}
+						}
 					}
 					sokuhot.innerHTML = data.Type.Detail;
 					sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
-					
-					// https://github.com/video-dev/hls.js/issues/1991
-					audio.play();
-					audio.oncanplaythrough = (event) => {
-						var playedPromise = audio.play();
-						if (playedPromise) {
-							playedPromise.catch((e) => {
-								console.log(e);
-								if (e.name === 'NotAllowedError' || e.name === 'NotSupportedError') {
-									console.log(e.name);
-								}
-							}).then(() => {
-								console.log("playing sound !!!");
-							});
-						}
-					}
 					
 					recentTime = data.AnnouncedTime.UnixTime;
 					numTimeout = setTimeout(function(){
 						sokuhot.innerHTML = '';
 						sokuhod.innerHTML = '';
 						numTimeout = 0;
-					}, 300000);
+					}, 120000);
 				}
 			}).catch(function(error) {
 				console.log(error);
