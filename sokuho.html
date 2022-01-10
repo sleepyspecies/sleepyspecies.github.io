@@ -16,32 +16,34 @@
 		var recentTime = 0; //Date.now();
 		var numTimeout = 0;
 
-		function getjson() {
-			fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
-				return response.json();
-			}).then(function(data) {
-				if (recentTime < data.AnnouncedTime.UnixTime) {
-					console.log(data);
-					if (numTimeout > 0) {
-						clearTimeout(numTimeout);
+		window.onload = function() {
+			function getjson() {
+				fetch('https://api.iedred7584.com/eew/json/').then(function(response) {
+					return response.json();
+				}).then(function(data) {
+					if (recentTime < data.AnnouncedTime.UnixTime) {
+						console.log(data);
+						if (numTimeout > 0) {
+							clearTimeout(numTimeout);
+						}
+						sokuhot.innerHTML = data.Type.Detail;
+						sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
+						console.log(data);
+						sound.play();
+						recentTime = data.AnnouncedTime.UnixTime;
+						numTimeout = setTimeout(function(){
+							sokuhot.innerHTML = '';
+							sokuhod.innerHTML = '';
+							numTimeout = 0;
+						}, 300000);
 					}
-					sokuhot.innerHTML = data.Type.Detail;
-					sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
-					console.log(data);
-					sound.play();
-					recentTime = data.AnnouncedTime.UnixTime;
-					numTimeout = setTimeout(function(){
-						sokuhot.innerHTML = '';
-						sokuhod.innerHTML = '';
-						numTimeout = 0;
-					}, 300000);
-				}
-			}).catch(function(error) {
-				console.log(error);
-			});
-		}
+				}).catch(function(error) {
+					console.log(error);
+				});
+			}
 
-		setInterval(getjson, 1000);
+			setInterval(getjson, 1000);
+		};
 	</script>
 	<style type="text/css">
 		body {
