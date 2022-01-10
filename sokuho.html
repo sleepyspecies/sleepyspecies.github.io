@@ -28,9 +28,9 @@
 					}
 					sokuhot.innerHTML = data.Type.Detail;
 					sokuhod.innerHTML = data.AnnouncedTime.String + '　震源地：' + data.Hypocenter.Name + '　震度：' + data.MaxIntensity.LongString + '　マグニチュード：' + data.Hypocenter.Magnitude.Float + '　震源の深さ：' + data.Hypocenter.Location.Depth.String;
-					console.log(data);
 					
 					// https://github.com/video-dev/hls.js/issues/1991
+					audio.play();
 					audio.oncanplaythrough = (event) => {
 						var playedPromise = audio.play();
 						if (playedPromise) {
